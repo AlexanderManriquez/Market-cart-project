@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klik Market - Tu Supermercado en línea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Bitter:ital,wght@0,100..900;1,100..900&family=Chivo:ital,wght@0,100..900;1,100..900&family=Kaushan+Script&family=Matemasie&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Mono&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Revolution&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Space+Grotesk:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+    <nav>
+        <img src="https://lh5.googleusercontent.com/proxy/-N7CXOFbT-loV1IDL5dRBOKd2t3Uxh0xzyh6agbwOjiFVASo5vZNHM0XNP0S9ThFgYtPmzY4Um1gkKNekzHQqkb6uPOmPY77hddVY9Vr0J4od8DUdnVSgbtB61hDKlUN3GvRVA" alt="Logo Supermercado" class="nav-logo">
+        <div>
+            <ul class="navbar-list">
+                <li>
+                    <form class="search-form">
+                        <input type="search" class="search-input" placeholder="Buscar...">
+                        <!-- Insertar iconos de FontAwesome para lupa de busqueda y carrito de compras -->
+                        <button type="submit" class="search-btn">Buscar</button>
+                    </form>
+                </li>
+                <li class="cart" onclick="openCartModal()">
+                    🛒 <span id="cart-quantity">$0</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Klik Market</h1>
+
+    <section class="products">
+        <h2>Productos Destacados</h2>
+        <div id="products-container">
+            <!-- Generar dinámicamente con el arreglo del script -->
+        </div>
+        <!-- Botón para mostrar todos los productos -->
+        <button class="btn more-btn">Ver más productos</button> 
+    </section>
+
+    <div id="cart-modal">
+        <h3>Carrito de compras</h3>
+        <ul id="cart-list"></ul>
+        <p>Total: <span id="cart-total">0</span></p>
+        <button>Vaciar Carrito</button>
+        <button onclick="closeCartModal()">Cerrar</button>
+    </div>
+
+    <footer>
+
+    </footer>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
