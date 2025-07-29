@@ -40,7 +40,11 @@
     </section>
 
     <div id="cart-modal">
-        <h3>Carrito de compras</h3>
+        <div class="modal-header">
+            <h3>Carrito de compras</h3>
+            <button onclick="closeCartModal()" class="close-btn" title="Cerrar">X</button>
+        </div>
+        
         <table id="cart-table">
             <thead>
                 <tr>
@@ -60,8 +64,11 @@
                 </tr>
             </tfoot>
         </table>
-        <button>Vaciar Carrito</button>
-        <button onclick="closeCartModal()">Cerrar</button>
+        <div class="action-btns">
+            <button onclick="clearCart()" class="clean-btn">Vaciar Carrito</button>
+            <button class="pay-btn">Pagar</button>
+        </div>
+        
     </div>
 
     <footer>

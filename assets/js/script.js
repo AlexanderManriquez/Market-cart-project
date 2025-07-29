@@ -79,8 +79,14 @@ function addToCart(id) {
      productsInCart.push({ ...producto, cantidad:1 });
     }
 
-      const totalOfProducts = productsInCart.reduce((total, item) => total + item.cantidad, 0);
-      cartQuantity.textContent = totalOfProducts;
+    updateCartCounter();
+    cartRender();    
+}
+
+//Función para actualizar el contador del carrito
+function updateCartCounter() {
+    const totalOfProducts = productsInCart.reduce((total, item) => total + item.cantidad, 0);
+    cartQuantity.textContent = totalOfProducts;
 }
 
 //Funciones para apertura y cierre de modal
@@ -113,20 +119,49 @@ function cartRender() {
         const subTotal = item.price * item.cantidad;
         tdSubTotal.textContent = `$ ${subTotal}`;
 
+        const tdRemove = document.createElement('td');
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = "X";
+        removeBtn.className = "remove-btn";
+        removeBtn.addEventListener('click', () => {
+            removeFromCart(item.id);
+        })
+
         tr.appendChild(tdName);
         tr.appendChild(tdQuantity);
         tr.appendChild(tdPrice);
         tr.appendChild(tdSubTotal);
+        tr.appendChild(tdRemove);
+        tdRemove.appendChild(removeBtn);
 
         cartList.appendChild(tr);
         total += subTotal;
     })
     cartTotal.textContent = `$ ${total}`;
 }
+//Añadir funcionalidad para eliminar y vaciar los elementos del carrito
+function clearCart() {
+    productsInCart.length = 0;
+    cartList.innerHTML = "";
+    cartTotal.textContent = "$ 0";
+    cartQuantity.textContent = "0";
+}
 
-showProducts(products);
+function removeFromCart(id) {
+    const index = productsInCart.findIndex(item => item.id === id);
+    if (index !== -1) {
+        productsInCart.splice(index, 1);
+        cartRender();
+        updateCartCounter();
+    }
+}
+//Mostrar los productos al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    showProducts(products);
+});
 
-//ToDo: Añadir funcionalidad para eliminar y vaciar los elementos del carrito
+
+
 //ToDo: Añadir funcionalidad de descuento segun total de la compra
 //ToDo: Añadir botones para aumentar o disminuir cantidad de productos
 //ToDo: Aplicar lógica para busqueda de productos por nombre

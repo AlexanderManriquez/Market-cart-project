@@ -91,7 +91,7 @@ h2 {
     background-color: #6FCF97;
     color: white;
     font-weight: 600;
-    transition: all 0.5s ease-out;
+    transition: all 0.3s ease-out;
 }
 
 
@@ -132,7 +132,7 @@ h2 {
     position: fixed; 
     top: 10%; 
     left: 30%; 
-    background: rgba(128, 128, 128, 0.958); 
+    background: rgba(176, 175, 175, 0.958); 
     padding: 20px;
     width: 40%;
     height: auto; 
@@ -140,6 +140,27 @@ h2 {
     border-radius: 2rem;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2); 
     z-index: 1000;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn, .remove-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: #F2994A;
+    cursor: pointer;
+    
+}
+
+.close-btn:hover, .remove-btn:hover {
+    color: #6FCF97;
+    text-shadow: 2px 2px 4px #333;
+    transition: color 0.3s ease-out;
 }
 
 #cart-table {
@@ -162,4 +183,38 @@ h2 {
 #cart-table tfoot {
     font-weight: bold;
     color: white;
+}
+
+.action-btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.clean-btn {
+    background-color: #F2994A;
+    border: 2px solid #F2994A;
+    border-radius: 2rem;
+    padding: 0.75rem;
+    color: white;
+}
+
+.pay-btn {
+    background-color: #6FCF97;
+    border: 2px solid #6FCF97;
+    border-radius: 2rem;
+    padding: 0.75rem;
+    color: white;
+}
+
+.clean-btn:hover {
+    cursor: pointer;
+    background-color: #b77439;
+    transition: all 0.3s ease-out;
+}
+
+.pay-btn:hover {
+    cursor: pointer;
+    background-color: #4cae50;
+    transition: all 0.3s ease-out;
 }
