@@ -23,7 +23,7 @@
                     </form>
                 </li>
                 <li class="cart" onclick="openCartModal()">
-                    🛒 <span id="cart-quantity">$0</span>
+                    🛒 <span id="cart-quantity">0</span>
                 </li>
             </ul>
         </div>
@@ -41,8 +41,25 @@
 
     <div id="cart-modal">
         <h3>Carrito de compras</h3>
-        <ul id="cart-list"></ul>
-        <p>Total: <span id="cart-total">0</span></p>
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-list">
+                <!-- Aquí se llenarán los productos del carrito -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td id="cart-total">$0</td>
+                </tr>
+            </tfoot>
+        </table>
         <button>Vaciar Carrito</button>
         <button onclick="closeCartModal()">Cerrar</button>
     </div>

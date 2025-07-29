@@ -70,10 +70,10 @@ function addToCart(id) {
     const cartItem = productsInCart.find(item => item.id === id);
 
     if(cartItem) {
-        if(cartItem.cantidad < 3) {
+        if(cartItem.cantidad < 5) {
             cartItem.cantidad++;
         } else {
-            alert("Solo puedes llevar máximo 3 unidades de cada producto");
+            alert("Solo puedes llevar máximo 5 unidades de cada producto");
         }
     } else {
      productsInCart.push({ ...producto, cantidad:1 });
@@ -92,17 +92,34 @@ function openCartModal() {
 function closeCartModal() {
     cartModal.style.display = "none";
 }
-
+//Función para mostrar los productos en el carrito y calcular el total
 function cartRender() {
     cartList.innerHTML = "";
     let total = 0;
 
     productsInCart.forEach(item => {
-        console.log(item);
-        const li = document.createElement('li');
-        li.textContent = `${item.name} x${item.cantidad} - $ ${ item.price * item.cantidad}`
-        cartList.appendChild(li);
-        total += item.price * parseInt(item.cantidad);
+        const tr = document.createElement('tr');
+
+        const tdName = document.createElement('td');
+        tdName.textContent = item.name;
+
+        const tdQuantity = document.createElement('td');
+        tdQuantity.textContent = item.cantidad;
+
+        const tdPrice = document.createElement('td');
+        tdPrice.textContent = `$ ${item.price}`;
+
+        const tdSubTotal = document.createElement('td');
+        const subTotal = item.price * item.cantidad;
+        tdSubTotal.textContent = `$ ${subTotal}`;
+
+        tr.appendChild(tdName);
+        tr.appendChild(tdQuantity);
+        tr.appendChild(tdPrice);
+        tr.appendChild(tdSubTotal);
+
+        cartList.appendChild(tr);
+        total += subTotal;
     })
     cartTotal.textContent = `$ ${total}`;
 }
