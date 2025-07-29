@@ -133,13 +133,30 @@ h2 {
     top: 10%; 
     left: 30%; 
     background: rgba(176, 175, 175, 0.958); 
-    padding: 20px;
     width: 40%;
     height: auto; 
     border: 1px solid #ccc;
     border-radius: 2rem;
+    max-height: 80vh;
+    overflow: hidden;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2); 
     z-index: 1000;
+}
+
+.cart-modal-content {
+    padding: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: inherit;
+}
+
+.cart-modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart-modal-content::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
 }
 
 .modal-header {

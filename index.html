@@ -40,35 +40,36 @@
     </section>
 
     <div id="cart-modal">
-        <div class="modal-header">
-            <h3>Carrito de compras</h3>
-            <button onclick="closeCartModal()" class="close-btn" title="Cerrar">X</button>
-        </div>
+        <div class="cart-modal-content">
+            <div class="modal-header">
+                <h3>Carrito de compras</h3>
+                <button onclick="closeCartModal()" class="close-btn" title="Cerrar">X</button>
+            </div>
         
-        <table id="cart-table">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
-            <tbody id="cart-list">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-list">
                 <!-- Aquí se llenarán los productos del carrito -->
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">Total</td>
-                    <td id="cart-total">$0</td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="action-btns">
-            <button onclick="clearCart()" class="clean-btn">Vaciar Carrito</button>
-            <button class="pay-btn">Pagar</button>
-        </div>
-        
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Total</td>
+                        <td id="cart-total">$0</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="action-btns">
+                <button onclick="clearCart()" class="clean-btn">Vaciar Carrito</button>
+                <button class="pay-btn">Pagar</button>
+            </div>
+        </div>   
     </div>
 
     <footer>

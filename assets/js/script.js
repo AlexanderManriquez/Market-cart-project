@@ -13,7 +13,10 @@ const products = [
     { id: 9, name: "Fideos", price: 800, img: "https://cdn.pixabay.com/photo/2024/07/01/14/31/pasta-8865344_1280.jpg", description: "Fideos de trigo integral" },
     { id: 10, name: "Aceite", price: 1100, img: "https://cdn.pixabay.com/photo/2016/06/03/14/32/olive-oil-1433506_1280.jpg", description: "Aceite de oliva virgen extra" },
     { id: 11, name: "Azúcar", price: 750, img: "https://cdn.pixabay.com/photo/2020/04/13/22/55/sugar-5040276_1280.jpg", description: "Azúcar orgánica" },
-    { id: 12, name: "Plátanos", price: 1500, img: "https://cdn.pixabay.com/photo/2016/06/29/22/37/bananas-1487965_1280.jpg", description: "Plátanos de excelente calidad" }     
+    { id: 12, name: "Plátanos", price: 1500, img: "https://cdn.pixabay.com/photo/2016/06/29/22/37/bananas-1487965_1280.jpg", description: "Plátanos de excelente calidad" },
+    { id: 13, name: "Cereal", price: 2000, img: "https://cdn.pixabay.com/photo/2022/02/02/20/57/granola-6989374_1280.jpg", description: "Cereal integral con frutos secos"},
+    { id: 14, name: "Yogur", price: 1800, img: "https://cdn.pixabay.com/photo/2018/03/10/16/31/fragaria-3214412_1280.jpg", description: "Yogur natural sin azúcar" },
+    { id: 15, name: "Queso", price: 3500, img: "https://cdn.pixabay.com/photo/2023/12/08/14/16/cheese-8437668_1280.jpg", description: "Queso madurado holandes" },     
 ];
 
 const productsInCart = [];
@@ -57,7 +60,7 @@ function connectCardBtns() {
         btn.addEventListener("click", () => {
             const id = parseInt(btn.getAttribute('data-id'));
             addToCart(id);
-            alert("Producto agregado al carrito");
+            // alert("Producto agregado al carrito");
         });
     });
 }
@@ -98,6 +101,7 @@ function openCartModal() {
 function closeCartModal() {
     cartModal.style.display = "none";
 }
+
 //Función para mostrar los productos en el carrito y calcular el total
 function cartRender() {
     cartList.innerHTML = "";
@@ -139,7 +143,8 @@ function cartRender() {
     })
     cartTotal.textContent = `$ ${total}`;
 }
-//Añadir funcionalidad para eliminar y vaciar los elementos del carrito
+
+//Funciones para eliminar y vaciar los elementos del carrito
 function clearCart() {
     productsInCart.length = 0;
     cartList.innerHTML = "";
@@ -155,6 +160,7 @@ function removeFromCart(id) {
         updateCartCounter();
     }
 }
+
 //Mostrar los productos al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
     showProducts(products);
@@ -164,5 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //ToDo: Añadir funcionalidad de descuento segun total de la compra
 //ToDo: Añadir botones para aumentar o disminuir cantidad de productos
-//ToDo: Aplicar lógica para busqueda de productos por nombre
+//ToDo: Añadir miniaturas de las imágenes de los productos en el carrito
+//ToDo: Añadir mejoras en la UX del carrito
+//ToDo: Aplicar lógica para busqueda de productos por nombre y categoría
 //ToDo: Mostrar una alerta con transiciones suaves al agregar productos al carrito
