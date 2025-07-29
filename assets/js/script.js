@@ -21,8 +21,8 @@ const cartModal = document.getElementById('cart-modal');
 const cartList = document.getElementById('cart-list');
 const cartTotal =  document.getElementById('cart-total');
 const cartQuantity = document.getElementById('cart-quantity');
-const minDiscountAmount = 10;
-const discount = 10; //10% de dcto al superar el monto de 10*
+const minDiscountAmount = 20000; //Monto mínimo para aplicar descuento
+const discount = 10; //10% de dcto al superar el monto de 20000
 
 //Función para mostrar los productos en cards obteniendo sus datos desde un array de objetos.
 function showProducts (){
@@ -46,6 +46,7 @@ function showProducts (){
 
         container.appendChild(card);
     }
+
     connectCardBtns();   
 }
 
@@ -56,6 +57,7 @@ function connectCardBtns() {
         btn.addEventListener("click", () => {
             const id = parseInt(btn.getAttribute('data-id'));
             addToCart(id);
+            alert("Producto agregado al carrito");
         });
     });
 }
@@ -107,7 +109,8 @@ function cartRender() {
 
 showProducts(products);
 
-// ToDo: Añadir funcionalidad para eliminar y vaciar los elementos del carrito
+//ToDo: Añadir funcionalidad para eliminar y vaciar los elementos del carrito
 //ToDo: Añadir funcionalidad de descuento segun total de la compra
 //ToDo: Añadir botones para aumentar o disminuir cantidad de productos
 //ToDo: Aplicar lógica para busqueda de productos por nombre
+//ToDo: Mostrar una alerta con transiciones suaves al agregar productos al carrito
