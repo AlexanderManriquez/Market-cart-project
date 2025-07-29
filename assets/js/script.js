@@ -7,7 +7,7 @@ const products = [
     { id: 3, name: "Leche", price: 1000, img: "https://cdn.pixabay.com/photo/2014/11/05/16/35/milk-518067_1280.jpg", description: "Leche fresca de granja"},
     { id: 4, name: "Huevos", price: 2500, img: "https://cdn.pixabay.com/photo/2016/07/08/18/18/egg-1504992_1280.png", description: "Huevos orgánicos de gallinas libres" },
     { id: 5, name: "Carne", price: 6000, img: "https://cdn.pixabay.com/photo/2014/07/06/18/35/beef-roulades-385751_1280.jpg", description: "Carne de res de alta calidad" },
-    { id: 5, name: "Pescado", price: 7000, img: "https://cdn.pixabay.com/photo/2024/06/22/14/58/fish-seller-8846497_1280.jpg", description: "Pescado fresco del día" },
+    { id: 6, name: "Pescado", price: 7000, img: "https://cdn.pixabay.com/photo/2024/06/22/14/58/fish-seller-8846497_1280.jpg", description: "Pescado fresco del día" },
     { id: 7, name: "Lechuga", price: 1000, img: "https://cdn.pixabay.com/photo/2015/05/17/14/29/salad-771056_1280.jpg", description: "Lechuga frescas y saludables" },
     { id: 8, name: "Arroz", price: 900, img: "https://cdn.pixabay.com/photo/2017/06/07/16/24/rice-2380808_1280.jpg", description: "Arroz de grano largo" },
     { id: 9, name: "Fideos", price: 800, img: "https://cdn.pixabay.com/photo/2024/07/01/14/31/pasta-8865344_1280.jpg", description: "Fideos de trigo integral" },
@@ -24,8 +24,9 @@ const cartModal = document.getElementById('cart-modal');
 const cartList = document.getElementById('cart-list');
 const cartTotal =  document.getElementById('cart-total');
 const cartQuantity = document.getElementById('cart-quantity');
-const minDiscountAmount = 20000; //Monto mínimo para aplicar descuento
-const discount = 10; //10% de dcto al superar el monto de 20000
+const minDiscountAmount = 20000;
+const discount = 0.1;
+const maxOfProducts = 5;
 
 //Función para mostrar los productos en cards obteniendo sus datos desde un array de objetos.
 function showProducts (){
@@ -73,10 +74,10 @@ function addToCart(id) {
     const cartItem = productsInCart.find(item => item.id === id);
 
     if(cartItem) {
-        if(cartItem.cantidad < 5) {
+        if(cartItem.cantidad < maxOfProducts) {
             cartItem.cantidad++;
         } else {
-            alert("Solo puedes llevar máximo 5 unidades de cada producto");
+            alert(`Solo puedes llevar máximo ${maxOfProducts} unidades de cada producto`);
         }
     } else {
      productsInCart.push({ ...producto, cantidad:1 });
@@ -105,7 +106,8 @@ function closeCartModal() {
 //Función para mostrar los productos en el carrito y calcular el total
 function cartRender() {
     cartList.innerHTML = "";
-    let total = 0;
+    const total = calculateTotal();
+    console.log(total);
 
     productsInCart.forEach(item => {
         const tr = document.createElement('tr');
@@ -139,16 +141,20 @@ function cartRender() {
         tdRemove.appendChild(removeBtn);
 
         cartList.appendChild(tr);
-        total += subTotal;
     })
-    cartTotal.textContent = `$ ${total}`;
+
+    if (total > minDiscountAmount) {
+        loyaltyDiscount(total);
+    } else {
+        cartTotal.textContent = `${total}`;
+    }   
 }
 
 //Funciones para eliminar y vaciar los elementos del carrito
 function clearCart() {
     productsInCart.length = 0;
     cartList.innerHTML = "";
-    cartTotal.textContent = "$ 0";
+    cartTotal.textContent = "0";
     cartQuantity.textContent = "0";
 }
 
@@ -166,9 +172,40 @@ document.addEventListener('DOMContentLoaded', () => {
     showProducts(products);
 });
 
+//Función para calcular el total del carrito
+const calculateTotal = () => {
+    return productsInCart.reduce((total, item) => total + item.price * item.cantidad, 0);
+}
+
+//Añadir funcionalidad de descuento segun total de la compra
+//Función encargada de calcular el descuento y el total con descuento
+const discountCalculation = (total) => {
+    const discountAmount = total * discount;
+    const discountedTotal = total - discountAmount;
+    return {
+        originalTotal: total,
+        discountAmount,
+        discountedTotal
+    }
+}
+//Función encargada de renderizar el total con descuento en el carrito
+const renderTotalDiscount = ({ originalTotal, discountedTotal }) => {
+    cartTotal.textContent = `$ ${originalTotal}`;
+    cartTotal.style.textDecoration = "line-through";
+    cartTotal.style.color = "#46190e";
+    cartTotal.style.fontSize = "0.8rem";
+    const newTotalCart = document.getElementById('cart-new-total');
+    newTotalCart.style.display = "inline";
+    newTotalCart.textContent = ` $ ${discountedTotal}`;
+}
+
+const loyaltyDiscount = (total) => {   
+    const discountDetails = discountCalculation(total);
+    renderTotalDiscount(discountDetails);
+};
 
 
-//ToDo: Añadir funcionalidad de descuento segun total de la compra
+
 //ToDo: Añadir botones para aumentar o disminuir cantidad de productos
 //ToDo: Añadir miniaturas de las imágenes de los productos en el carrito
 //ToDo: Añadir mejoras en la UX del carrito

@@ -45,6 +45,8 @@
                 <h3>Carrito de compras</h3>
                 <button onclick="closeCartModal()" class="close-btn" title="Cerrar">X</button>
             </div>
+
+            <p class="offer-alert">Aprovecha un descuento del 10% sobre cualquier compra mayor a $20000</p>
         
             <table id="cart-table">
                 <thead>
@@ -61,7 +63,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3">Total</td>
-                        <td id="cart-total">$0</td>
+                        <td > <span id="cart-total">0</span><span id="cart-new-total">0</span></td>
                     </tr>
                 </tfoot>
             </table>
