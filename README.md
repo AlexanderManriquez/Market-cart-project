@@ -17,7 +17,11 @@
 ### Pendientes Siguientes etapas:
 
 🛑 Busqueda de productos: Implementar la lógica para busqueda de productos (Aumentar cantidad de productos)
+
 🛑 Botones para aumentar/disminuir cantidades
+
 🛑 Mejoras UX: Alertas con transiciones suaves
+
+🛑 Modularización del código asociado a la lógica de la aplicación
 
 En Desarrollo... ⏲️
